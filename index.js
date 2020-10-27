@@ -191,7 +191,7 @@ class RNParallax extends Component {
   }
 
   renderBackgroundImage() {
-    const {backgroundImage} = this.props;
+    const {backgroundImage, backgroundImageResizeMode} = this.props;
     const imageOpacity = this.getImageOpacity();
     const imageTranslate = this.getImageTranslate();
     const imageScale = this.getImageScale();
@@ -204,6 +204,7 @@ class RNParallax extends Component {
             height: this.getHeaderMaxHeight(),
             opacity: imageOpacity,
             transform: [{translateY: imageTranslate}, {scale: imageScale}],
+            resizeMode: backgroundImageResizeMode,
           },
         ]}
         source={backgroundImage}
@@ -368,6 +369,7 @@ RNParallax.propTypes = {
   renderContent: PropTypes.func.isRequired,
   backgroundColor: PropTypes.string,
   backgroundImage: PropTypes.any,
+  backgroundImageResizeMode: 'contain' | 'cover',
   navbarColor: PropTypes.string,
   title: PropTypes.any,
   titleStyle: PropTypes.any,
@@ -392,6 +394,7 @@ RNParallax.defaultProps = {
   navbarColor: DEFAULT_NAVBAR_COLOR,
   backgroundColor: DEFAULT_BACKGROUND_COLOR,
   backgroundImage: null,
+  backgroundImageResizeMode: 'cover',
   title: null,
   titleStyle: styles.headerText,
   headerTitleStyle: null,
