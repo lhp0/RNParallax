@@ -191,7 +191,7 @@ class RNParallax extends Component {
   }
 
   renderBackgroundImage() {
-    const {backgroundImage, backgroundImageResizeMode} = this.props;
+    const {backgroundImage, backgroundImageResizeMode, backgroundColor} = this.props;
     const imageOpacity = this.getImageOpacity();
     const imageTranslate = this.getImageTranslate();
     const imageScale = this.getImageScale();
@@ -202,6 +202,7 @@ class RNParallax extends Component {
           styles.backgroundImage,
           {
             height: this.getHeaderMaxHeight(),
+            backgroundColor: backgroundColor,
             opacity: imageOpacity,
             transform: [{translateY: imageTranslate}, {scale: imageScale}],
             resizeMode: backgroundImageResizeMode,
