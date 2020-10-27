@@ -62,12 +62,12 @@ const styles = StyleSheet.create({
   headerTitle: {
     backgroundColor: 'transparent',
     position: 'absolute',
-    top: 0,
+    top: 12,
     left: 0,
     right: 0,
     paddingTop: STATUS_BAR_HEIGHT,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
   headerText: {
     color: DEFAULT_TITLE_COLOR,
@@ -295,7 +295,7 @@ class RNParallax extends Component {
   }
 
   renderHeaderForeground() {
-    const {renderNavBar} = this.props;
+    const {renderNavBar, renderNavbarBottom} = this.props;
     const navBarOpacity = this.getNavBarForegroundOpacity();
 
     return (
@@ -303,11 +303,12 @@ class RNParallax extends Component {
         style={[
           styles.bar,
           {
-            height: this.getHeaderMinHeight(),
+            height: this.getHeaderMinHeight() + 100,
             opacity: navBarOpacity,
           },
         ]}>
         {renderNavBar()}
+        {renderNavbarBottom && renderNavbarBottom()}
       </Animated.View>
     );
   }
@@ -366,6 +367,7 @@ class RNParallax extends Component {
 }
 
 RNParallax.propTypes = {
+  renderNavbarBottom: PropTypes.func,
   renderNavBar: PropTypes.func,
   renderContent: PropTypes.func.isRequired,
   backgroundColor: PropTypes.string,
@@ -392,6 +394,7 @@ RNParallax.propTypes = {
 
 RNParallax.defaultProps = {
   renderNavBar: () => <View />,
+  renderNavbarBottom: null,
   navbarColor: DEFAULT_NAVBAR_COLOR,
   backgroundColor: DEFAULT_BACKGROUND_COLOR,
   backgroundImage: null,
